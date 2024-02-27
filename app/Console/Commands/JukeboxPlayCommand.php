@@ -43,6 +43,11 @@ numbers and add the extra tracks to the queue';
                 continue;
             }
 
+            if ($this->isInPlaylist($trackId)) {
+                $this->info("$trackId is already in the playlist");
+                continue;
+            }
+
             $this->addTrack($trackId, $catalog, $isEmpty);
 
             $this->info(sprintf("Track %s was added successfully!", $trackId));
@@ -61,5 +66,10 @@ numbers and add the extra tracks to the queue';
 
         $track->save();
 
+    }
+
+    private function isInPlaylist(string $trackId): bool
+    {
+        return !is_null(Jukebox::where('code', $trackId)->first());
     }
 }
