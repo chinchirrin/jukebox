@@ -27,6 +27,8 @@ As part of this task, there is no need to simulate the track playing. So, when
 you “play” your first track, that will always be the one playing, and any
 subsequent “plays” should simply add the track to the queue.
 
+*Note: SQLite has been chosen as storage for this solution*
+
 ## Setup
 
 ### Install dependencies
@@ -35,9 +37,15 @@ subsequent “plays” should simply add the track to the queue.
 composer install
 ```
 
-### Setup sqlite DB (optional)
+### Provision `.env` file
 
-If using `sqlite`, update .env file to have the following DB connection details:
+```sh
+cp .env.example .env
+```
+
+### Setup SQLite DB
+
+Update `.env` file to have the following DB connection details:
 
 ```bash
 DB_CONNECTION=sqlite
@@ -46,10 +54,11 @@ DB_DATABASE=database.sqlite
 
 ### Generate Database
 
-
 ```sh
-php artisan migrate:fresh
+php artisan migrate
 ```
+
+When asked, confirm to create `SQLite` database.
 
 ## Usage
 
