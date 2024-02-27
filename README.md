@@ -29,13 +29,26 @@ subsequent “plays” should simply add the track to the queue.
 
 ## Setup
 
-### Using sqlite DB (optional)
+### Install dependencies
+
+```sh
+composer install
+```
+
+### Setup sqlite DB (optional)
 
 If using `sqlite`, update .env file to have the following DB connection details:
 
 ```bash
 DB_CONNECTION=sqlite
 DB_DATABASE=database.sqlite
+```
+
+### Generate Database
+
+
+```sh
+php artisan migrate:fresh
 ```
 
 ## Usage
