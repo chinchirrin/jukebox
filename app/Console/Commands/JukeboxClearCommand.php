@@ -19,7 +19,7 @@ class JukeboxClearCommand extends Command
      *
      * @var string
      */
-    protected $description = 'clear queue and current playing track';
+    protected $description = 'Clear queue and current playing track';
 
     /**
      * Execute the console command.

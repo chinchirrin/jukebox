@@ -20,7 +20,7 @@ class JukeboxQueueCommand extends Command
      *
      * @var string
      */
-    protected $description = 'list contents of the queue including currently playing track';
+    protected $description = 'List contents of the queue including currently playing track';
 
     /**
      * Execute the console command.
@@ -42,6 +42,7 @@ class JukeboxQueueCommand extends Command
         if (!is_null($playing)) {
             $this->info("Playing: " . $transformer->transformToString($playing));
         }
+
         foreach ($queue as $track) {
             $this->info($transformer->transformToString($track));
         }

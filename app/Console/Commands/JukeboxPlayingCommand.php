@@ -20,7 +20,7 @@ class JukeboxPlayingCommand extends Command
      *
      * @var string
      */
-    protected $description = 'give details of the currently playing track';
+    protected $description = 'Give details of the currently playing track';
 
     /**
      * Execute the console command.
