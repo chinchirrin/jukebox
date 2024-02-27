@@ -38,21 +38,28 @@ numbers and add the extra tracks to the queue';
         foreach($trackIdList as $trackId) {
             $trackId = strtoupper($trackId);
 
-            if ($catalog->isValidTrackId($trackId)) {
-                $track = new Jukebox();
-                $track->code = $trackId;
-                $track->artist = $catalog->getArtistById($trackId);
-                $track->song = $catalog->getSongById($trackId);
-                $track->playing = $isEmpty;
-
-                $track->save();
-
-                $isEmpty = false;
-
-                $this->info(sprintf("Track %s was added successfully!", $trackId));
-            } else {
+            if (!$catalog->isValidTrackId($trackId)) {
                 $this->info("Invalid track: $trackId");
+                continue;
             }
+
+            $this->addTrack($trackId, $catalog, $isEmpty);
+
+            $this->info(sprintf("Track %s was added successfully!", $trackId));
+
+            $isEmpty = false;
         }
+    }
+
+    private function addTrack(string $trackId, JukeboxCatalog $catalog, bool $playing): void
+    {
+        $track = new Jukebox();
+        $track->code = $trackId;
+        $track->artist = $catalog->getArtistById($trackId);
+        $track->song = $catalog->getSongById($trackId);
+        $track->playing = $playing;
+
+        $track->save();
+
     }
 }
